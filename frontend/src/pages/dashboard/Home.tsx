@@ -1,6 +1,6 @@
 import { PageHeader } from '../../components/layout/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
-import { Wrench, CheckCircle, TrendingUp, AlertCircle } from 'lucide-react';
+import { Wrench, CheckCircle, TrendingUp, AlertCircle, Truck, Zap, Calendar } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Link } from 'react-router-dom';
@@ -20,165 +20,175 @@ export function Home() {
     { name: 'Em Execução', value: 5 },
     { name: 'Concluída', value: 38 },
   ];
-  const COLORS = ['#3b82f6', '#f59e0b', '#22c55e'];
+  
+  // Cores Marsau: Amarelo Vibrante, Preto, Cinza Escuro
+  const COLORS = ['#FBBF24', '#000000', '#4B5563'];
 
   return (
-    <div className="p-6">
-      <div className="flex flex-col sm:flex-row justify-between sm:items-end mb-6 gap-4">
+    <div className="p-6 bg-slate-50 min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-end mb-8 gap-4">
         <PageHeader 
-          title="Dashboard Gerencial" 
-          description="Visão geral e indicadores em tempo real."
+          title="CENTRAL DE CONTROLE MARSAU" 
+          description="Monitoramento em tempo real da oficina e indicadores financeiros."
         />
-        <select className="border border-slate-300 rounded-md px-4 py-2 text-sm bg-white font-medium shadow-sm focus:ring-blue-500 mb-6">
-          <option>Mês Atual (Março)</option>
-          <option>Últimos 30 dias</option>
-          <option>Ano Atual (2026)</option>
-        </select>
+        <div className="flex items-center gap-2 bg-white p-2 rounded-lg shadow-sm border border-slate-200">
+           <Calendar className="h-4 w-4 text-yellow-600" />
+           <select className="text-sm font-bold bg-transparent focus:outline-none uppercase tracking-tighter">
+             <option>Março / 2026</option>
+             <option>Fevereiro / 2026</option>
+             <option>Ano Completo</option>
+           </select>
+        </div>
       </div>
 
-      {/* KPI Cards */}
+      {/* KPI Cards Estilo Marsau */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <Card className="bg-gradient-to-br from-blue-600 to-blue-700 border-none text-white shadow-md">
-          <CardContent className="p-6">
-            <div className="text-blue-100 text-sm font-medium mb-1">Faturamento Total</div>
-            <div className="text-3xl font-bold">R$ 45.230,00</div>
-            <div className="text-xs text-blue-200 mt-2 font-medium">↑ 12% vs. mês anterior</div>
+        <Card className="bg-black border-none text-white shadow-xl overflow-hidden relative">
+          <div className="absolute right-[-10px] top-[-10px] opacity-10">
+            <TrendingUp size={100} />
+          </div>
+          <CardContent className="p-6 relative z-10">
+            <div className="text-yellow-500 text-xs font-black uppercase tracking-widest mb-1">Faturamento Bruto</div>
+            <div className="text-3xl font-black">R$ 45.230,00</div>
+            <div className="flex items-center gap-1 text-xs text-emerald-400 mt-2 font-bold">
+              <span>↑ 12%</span>
+              <span className="text-slate-400 font-normal">vs. mês anterior</span>
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 border-none text-white shadow-md">
+        <Card className="bg-white border-2 border-black shadow-md">
           <CardContent className="p-6">
-            <div className="text-emerald-100 text-sm font-medium mb-1">Lucro Líquido</div>
-            <div className="text-3xl font-bold">R$ 18.500,00</div>
-            <div className="text-xs text-emerald-100 mt-2 font-medium">Margem de 40.9%</div>
+            <div className="text-slate-500 text-xs font-black uppercase tracking-widest mb-1">Lucro Líquido</div>
+            <div className="text-3xl font-black text-black">R$ 18.500,00</div>
+            <div className="inline-block bg-yellow-400 text-black text-[10px] px-2 py-0.5 rounded mt-2 font-black">
+              MARGEM 40.9%
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="shadow-sm">
+        <Card className="bg-white shadow-sm border border-slate-200">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
-              <div className="text-slate-500 text-sm font-medium mb-1">Ticket Médio (OS)</div>
-              <div className="text-2xl font-bold text-slate-800">R$ 1.150,00</div>
+              <div className="text-slate-400 text-xs font-black uppercase tracking-widest mb-1">Ticket Médio OS</div>
+              <div className="text-2xl font-black text-slate-800">R$ 1.150,00</div>
             </div>
-            <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
-              <TrendingUp className="h-6 w-6" />
+            <div className="h-12 w-12 bg-yellow-100 rounded flex items-center justify-center text-yellow-600">
+              <Zap className="h-6 w-6 fill-current" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="shadow-sm">
+        <Card className="bg-white shadow-sm border border-slate-200">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
-              <div className="text-slate-500 text-sm font-medium mb-1">OS Abertas</div>
-              <div className="text-2xl font-bold text-slate-800">17</div>
+              <div className="text-slate-400 text-xs font-black uppercase tracking-widest mb-1">Caminhões no Pátio</div>
+              <div className="text-2xl font-black text-slate-800">17</div>
             </div>
-            <div className="h-12 w-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-600">
-              <Wrench className="h-6 w-6" />
+            <div className="h-12 w-12 bg-slate-900 rounded flex items-center justify-center text-white">
+              <Truck className="h-6 w-6" />
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Main Charts Area */}
+      {/* Gráficos com cores Marsau */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <Card className="lg:col-span-2 shadow-sm">
+        <Card className="lg:col-span-2 shadow-sm border-t-4 border-t-black">
           <CardHeader>
-            <CardTitle>Evolução de Faturamento (6 meses)</CardTitle>
+            <CardTitle className="text-sm font-black uppercase italic">Desempenho de Vendas (6 meses)</CardTitle>
           </CardHeader>
           <CardContent className="h-[320px] w-full mt-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={faturamentoData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 13}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 13}} tickFormatter={(value: number) => `R$ ${value}`} />
-                <Tooltip cursor={{fill: '#f8fafc'}} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                <Bar dataKey="pecas" name="Peças" stackId="a" fill="#3b82f6" radius={[0, 0, 4, 4]} barSize={40} />
-                <Bar dataKey="servicos" name="Serviços" stackId="a" fill="#10b981" />
-                <Bar dataKey="maoObra" name="Mão de Obra" stackId="a" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#000', fontWeight: 'bold', fontSize: 11}} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 11}} />
+                <Tooltip cursor={{fill: '#FBBF24', opacity: 0.1}} contentStyle={{ borderRadius: '4px', border: '1px solid #000' }} />
+                <Bar dataKey="pecas" name="Peças" stackId="a" fill="#000000" barSize={35} />
+                <Bar dataKey="servicos" name="Serviços" stackId="a" fill="#FBBF24" />
+                <Bar dataKey="maoObra" name="Mão de Obra" stackId="a" fill="#9CA3AF" />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
 
-         <Card className="shadow-sm">
+         <Card className="shadow-sm border-t-4 border-t-yellow-500">
           <CardHeader>
-            <CardTitle>Composição de Status (OS)</CardTitle>
+            <CardTitle className="text-sm font-black uppercase italic">Distribuição de Status</CardTitle>
           </CardHeader>
-          <CardContent className="h-[320px] w-full flex items-center justify-center relative">
+          <CardContent className="h-[320px] w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={osStatusData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={70}
-                  outerRadius={100}
-                  paddingAngle={3}
+                  innerRadius={60}
+                  outerRadius={90}
+                  paddingAngle={5}
                   dataKey="value"
-                  label
+                  label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}
                 >
                   {osStatusData.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} strokeWidth={0} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Tooltip />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
       </div>
 
-      {/* Alerts & secondary info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="border-l-4 border-l-red-500 shadow-sm">
-          <CardHeader className="pb-3 border-b border-red-50">
-            <CardTitle className="flex items-center gap-2 text-red-700">
-              <AlertCircle className="h-5 w-5" /> Painel de Alertas
+      {/* Painel de Alertas e Serviços */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10">
+        <Card className="border-2 border-red-100 shadow-sm bg-white">
+          <CardHeader className="pb-3 border-b border-red-50 bg-red-50/50">
+            <CardTitle className="flex items-center gap-2 text-red-700 uppercase font-black text-sm italic">
+              <AlertCircle className="h-5 w-5" /> Alertas Críticos da Oficina
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <ul className="space-y-3">
-              <li className="flex justify-between items-center py-2.5 border-b border-red-50 last:border-0 hover:bg-slate-50 transition-colors px-2 rounded -mx-2">
-                <span className="text-slate-700"><strong>4 peças</strong> atingiram o estoque mínimo</span>
-                <Link to="/estoque" className="text-sm font-medium text-blue-600 hover:underline">Repor Estoque</Link>
+              <li className="flex justify-between items-center py-3 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors px-2 rounded -mx-2">
+                <span className="text-slate-700 font-bold text-sm">⚠️ Estoque Crítico: 4 itens abaixo do mínimo</span>
+                <Link to="/estoque" className="text-[10px] font-black uppercase bg-black text-white px-2 py-1 rounded">Resolver</Link>
               </li>
-              <li className="flex justify-between items-center py-2.5 border-b border-red-50 last:border-0 hover:bg-slate-50 transition-colors px-2 rounded -mx-2">
-                <span className="text-slate-700"><strong>2 clientes</strong> no radar de Retorno (CRM)</span>
-                <Link to="/clientes" className="text-sm font-medium text-blue-600 hover:underline">Ver Tabela</Link>
+              <li className="flex justify-between items-center py-3 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors px-2 rounded -mx-2">
+                <span className="text-slate-700 font-bold text-sm">📅 3 Boletos vencendo hoje</span>
+                <Link to="/financeiro" className="text-[10px] font-black uppercase bg-black text-white px-2 py-1 rounded">Pagar</Link>
               </li>
-              <li className="flex justify-between items-center py-2.5 border-b border-red-50 last:border-0 hover:bg-slate-50 transition-colors px-2 rounded -mx-2">
-                <span className="text-slate-700"><strong>3 contas a pagar</strong> vencendo hoje</span>
-                <Link to="/financeiro" className="text-sm font-medium text-blue-600 hover:underline">Pagar Agora</Link>
+              <li className="flex justify-between items-center py-3 last:border-0 hover:bg-slate-50 px-2 rounded -mx-2">
+                <span className="text-slate-700 font-bold text-sm">🚚 2 Retornos de Frota pendentes (CRM)</span>
+                <Link to="/clientes" className="text-[10px] font-black uppercase bg-black text-white px-2 py-1 rounded">Ligar</Link>
               </li>
             </ul>
           </CardContent>
         </Card>
 
-        <Card className="shadow-sm">
-          <CardHeader className="pb-3 border-b border-slate-50">
-             <CardTitle className="flex items-center gap-2 text-slate-800">
-              <CheckCircle className="h-5 w-5 text-emerald-500" /> Previsão de Mais Feitos (Mês)
+        <Card className="shadow-sm border border-slate-200">
+          <CardHeader className="pb-3 border-b border-slate-50 bg-slate-50/50">
+             <CardTitle className="flex items-center gap-2 text-slate-800 uppercase font-black text-sm italic">
+              <Wrench className="h-5 w-5 text-yellow-500" /> Top Serviços Realizados
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
-            <ul className="space-y-4">
-              <li className="flex justify-between items-center p-3 rounded-md bg-slate-50 border border-slate-100">
-                <span className="text-sm font-medium text-slate-800">1. Revisão Preventiva (Diesel)</span>
-                <Badge variant="success" className="px-2">24x</Badge>
-              </li>
-              <li className="flex justify-between items-center p-3 rounded-md bg-slate-50 border border-slate-100">
-                <span className="text-sm font-medium text-slate-800">2. Troca de Óleo e Filtros</span>
-                <Badge variant="success" className="px-2">18x</Badge>
-              </li>
-              <li className="flex justify-between items-center p-3 rounded-md bg-slate-50 border border-slate-100">
-                <span className="text-sm font-medium text-slate-800">3. Reparo Alternador / Motor de Partida</span>
-                <Badge variant="success" className="px-2">12x</Badge>
-              </li>
+            <ul className="space-y-2">
+              {[
+                { label: "Manutenção de Alternador / Motor de Partida", qty: 24 },
+                { label: "Revisão Elétrica Preventiva (Frota)", qty: 18 },
+                { label: "Instalação de Acessórios / Iluminação", qty: 12 },
+              ].map((item, i) => (
+                <li key={i} className="flex justify-between items-center p-3 rounded bg-white border border-slate-100 shadow-sm">
+                  <span className="text-xs font-bold text-slate-900 uppercase">{i+1}. {item.label}</span>
+                  <span className="bg-yellow-400 text-black text-[10px] font-black px-2 py-1 rounded">{item.qty} OS</span>
+                </li>
+              ))}
             </ul>
           </CardContent>
         </Card>
       </div>
-
     </div>
   );
 }
